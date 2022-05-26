@@ -125,7 +125,7 @@ input {
 }
 
 .main {
-	overflow-x: hidden; // for animation gsap
+	overflow: hidden; // for animation gsap
 }
 
 /*=============== REUSABLE CSS CLASSES ===============*/
@@ -152,26 +152,6 @@ input {
 	top: 0;
 	left: 0;
 	z-index: var(--z-fixed);
-	&__btn {
-		width: 145px;
-		height: 52px;
-		margin-left: 1rem;
-		background: linear-gradient(104.42deg, #4745d0 0%, #2a27c9 60.23%);
-		box-shadow: inset -4px -4px 4px rgba(0, 0, 0, 0.1), inset 4px 4px 4px rgba(255, 255, 255, 0.1);
-		border-radius: 12px;
-		text-align: center;
-		padding: 1rem 1.5rem 1rem 1.5rem;
-		font-weight: var(--font-semi-bold);
-		color: var(--white-color);
-		font-size: var(--h7-font-size);
-		&:hover {
-			color: var(--white-color);
-
-			background: linear-gradient(104.42deg, rgba(71, 69, 208, 0.25) 0%, rgba(42, 39, 201, 0.25) 60.23%);
-			box-shadow: inset -4px -4px 4px rgba(0, 0, 0, 0.1), inset 4px 4px 4px rgba(255, 255, 255, 0.1);
-			border-radius: 12px;
-		}
-	}
 }
 
 .scroll-header {
@@ -207,11 +187,33 @@ input {
 		color: var(--first-color-alt);
 		border: 2px solid #7780a1;
 		border-radius: 12px;
+		transition: all 0.2s ease-in;
 		&:hover {
 			border: 2px solid #7780a1;
 			box-shadow: inset -4px -4px 4px rgba(0, 0, 0, 0.1), inset 4px 4px 4px rgba(255, 255, 255, 0.1);
 			border-radius: 12px;
-			opacity: 0.5;
+			opacity: 0.8;
+		}
+	}
+	&__btn_sec {
+		display: inline-block;
+		width: 145px;
+		height: 52px;
+		margin-left: 1rem;
+		background: linear-gradient(104.42deg, #4745d0 0%, #2a27c9 60.23%);
+		box-shadow: inset -4px -4px 4px rgba(0, 0, 0, 0.1), inset 4px 4px 4px rgba(255, 255, 255, 0.1);
+		border-radius: 12px;
+		text-align: center;
+		padding: 1rem 1.5rem 1rem 1.5rem;
+		font-weight: var(--font-semi-bold);
+		color: var(--white-color);
+		font-size: var(--h7-font-size);
+		transition: 0.2s ease-in;
+		&:hover {
+			opacity: 0.9;
+
+			box-shadow: inset -4px -4px 4px rgba(0, 0, 0, 0.1), inset 4px 4px 4px rgba(51, 51, 51, 0.647);
+			border-radius: 12px;
 		}
 	}
 	&__menu {
@@ -226,6 +228,11 @@ input {
 	}
 
 	&__item {
+		transition: all 0.15s ease-in;
+		&:hover {
+			transform: scale(1.14);
+			filter: saturate(2);
+		}
 	}
 
 	&__link {
@@ -243,7 +250,7 @@ input {
 
 .home {
 	background: url('../img/bg.svg') top;
-	padding: 18.7rem 0 8.4375rem;
+	padding: 18.7rem 0 12.5rem;
 	position: relative;
 	&__suptitle {
 		display: block;
@@ -326,6 +333,7 @@ input {
 	}
 
 	&__partners-inner {
+		transition: all 0.2s ease-in-out;
 		&:hover {
 			filter: saturate(30);
 		}
@@ -454,7 +462,119 @@ input {
 		opacity: 0.5;
 	}
 }
-/*=============== ABOUT ===============*/
+/*=============== AUCTIONERS ===============*/
+
+.section__title {
+	font-size: var(--h4-font-size);
+}
+
+.auctions {
+	overflow: hidden;
+	&__wrapper {
+		margin-top: 6rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__item {
+		grid-template-columns: 400px;
+		row-gap: 1.5rem;
+	}
+
+	&__inner {
+		width: 400px;
+		height: 520px;
+		img {
+			border-radius: 20px;
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	&__img {
+	}
+
+	&__descr {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__title {
+		flex: 0 0 70%;
+		line-height: 25px;
+		letter-spacing: 0.2px;
+	}
+
+	&__price {
+		background: rgba(42, 39, 201, 0.1);
+		border-radius: 4px;
+		color: var(--blue-color);
+		font-size: var(--h7-font-size);
+		padding: 8px 14px;
+		font-weight: var(--font-semi-bold);
+	}
+
+	&__timer {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	&__likes {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__likes-persons {
+		width: 128px;
+		display: flex;
+		.auctions__inner {
+			width: 32px;
+			height: 32px;
+		}
+		img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	&__likes-info {
+		flex: 0 0 50%;
+		color: #7780a1;
+		font-size: 0.875rem;
+	}
+
+	&__likes-hearts {
+		.ri-heart-fill {
+			font-size: 1rem;
+			color: red;
+		}
+		display: flex;
+	}
+
+	&__likes-like {
+		margin-left: 5px;
+		color: #7780a1;
+		font-size: 0.875rem;
+	}
+}
+
+.timer {
+	font-weight: 400;
+	letter-spacing: 0.2px;
+	font-size: 0.875rem;
+}
+.divider {
+	width: 400px;
+	height: 1px;
+	background-color: #e2e2ed;
+}
+.ri-timer-line {
+	font-size: 1.1rem;
+}
 
 /*=============== DISCOVER ===============*/
 
