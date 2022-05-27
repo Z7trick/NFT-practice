@@ -70,6 +70,15 @@ const swiper2 = new Swiper('.hottest-left__swiper', {
 	slidesPerView: 2,
 });
 
+// ============== likes anim ==========
+
+const getLike = document.querySelectorAll('.get-like');
+getLike.forEach((item) => {
+	item.addEventListener('click', () => {
+		item.classList.toggle('red');
+	});
+});
+
 /*==================== VIDEO ====================*/
 
 /*==================== SHOW SCROLL UP ====================*/
