@@ -27,15 +27,48 @@ function linkAction() {
 navLink.forEach((n) => n.addEventListener('click', linkAction));
 
 /*==================== CHANGE BACKGROUND HEADER ====================*/
-function scrollHeader() {
-	const header = document.getElementById('header');
-	// When the scroll is greater than 100 viewport, add the scroll-header ckass to the header tag
-	if (this.scrollY >= 100) header.classList.add('scroll-header');
-	else header.classList.remove('scroll-header');
-}
-window.addEventListener('scroll', scrollHeader);
+// function scrollHeader() {
+// 	const header = document.getElementById('header');
+// 	// When the scroll is greater than 100 viewport, add the scroll-header ckass to the header tag
+// 	if (this.scrollY >= 100) header.classList.add('scroll-header');
+// 	else header.classList.remove('scroll-header');
+// }
+// window.addEventListener('scroll', scrollHeader);
 
 /*==================== SWIPER DISCOVER ====================*/
+const swiper = new Swiper('.swiper', {
+	centeredSlides: true,
+	centeredSlidesBounds: true,
+	grabCursor: true,
+	spaceBetween: 110,
+	navigation: {
+		nextEl: '.swiper-next',
+	},
+	// Responsive breakpoints
+	breakpoints: {
+		576: {
+			slidesPerView: 1,
+		},
+		796: {
+			slidesPerView: 2,
+		},
+		1200: {
+			slidesPerView: 3,
+		},
+		1600: {
+			slidesPerView: 4,
+		},
+	},
+	slidesPerView: 1,
+});
+const swiper2 = new Swiper('.hottest-left__swiper', {
+	navigation: {
+		nextEl: '.swiper-next',
+	},
+	loop: true,
+	spaceBetween: 80,
+	slidesPerView: 2,
+});
 
 /*==================== VIDEO ====================*/
 

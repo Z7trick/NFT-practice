@@ -3,6 +3,14 @@
 @import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900);
 
 /*=============== VARIABLES CSS ===============*/
+@mixin hover {
+	&:hover {
+		opacity: 0.95;
+
+		box-shadow: inset -4px -4px 4px rgba(0, 0, 0, 0.1), inset 4px 4px 4px rgba(29, 28, 28, 0.647);
+		border-radius: 12px;
+	}
+}
 :root {
 	--header-height: 7.5rem;
 
@@ -105,10 +113,10 @@ ul {
 a {
 	text-decoration: none;
 }
-img,
 video {
-	max-width: 100%;
-	height: auto;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 button,
@@ -152,11 +160,37 @@ input {
 .showTimer {
 	display: block;
 }
+.title {
+	font-size: var(--h4-font-size);
+	color: var(--first-color);
+	font-weight: var(--font-semi-bold);
+	font-family: var(--title-font);
+	&_sub {
+		font-size: 0.9375rem;
+		color: var(--first-color-alt);
+		text-transform: uppercase;
+		letter-spacing: 3px;
+		font-weight: 500;
+	}
+}
 
+.price {
+	background: rgba(42, 39, 201, 0.1);
+	border-radius: 4px;
+	color: var(--blue-color);
+	font-size: var(--h7-font-size);
+	padding: 8px 14px;
+	font-weight: var(--font-semi-bold);
+}
+.like-info {
+	flex: 0 0 50%;
+	color: #7780a1;
+	font-size: 0.875rem;
+}
 /*=============== HEADER ===============*/
 .header {
 	width: 100%;
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 	z-index: var(--z-fixed);
@@ -164,6 +198,7 @@ input {
 
 .scroll-header {
 	background: #ffffff;
+	box-shadow: 4px 4px 4px rgba(37, 37, 37, 0.122);
 }
 
 /*=============== NAV ===============*/
@@ -175,7 +210,6 @@ input {
 	padding: 0 2.4rem 0 3rem;
 
 	&__logo {
-		object-fit: cover;
 	}
 	&__buttons {
 		display: flex;
@@ -196,12 +230,7 @@ input {
 		border: 2px solid #7780a1;
 		border-radius: 12px;
 		transition: all 0.2s ease-in;
-		&:hover {
-			border: 2px solid #7780a1;
-			box-shadow: inset -4px -4px 4px rgba(0, 0, 0, 0.1), inset 4px 4px 4px rgba(255, 255, 255, 0.1);
-			border-radius: 12px;
-			opacity: 0.8;
-		}
+		@include hover;
 	}
 	&__btn_sec {
 		display: inline-block;
@@ -209,7 +238,6 @@ input {
 		height: 52px;
 		margin-left: 1rem;
 		background: linear-gradient(104.42deg, #4745d0 0%, #2a27c9 60.23%);
-		box-shadow: inset -4px -4px 4px rgba(0, 0, 0, 0.1), inset 4px 4px 4px rgba(255, 255, 255, 0.1);
 		border-radius: 12px;
 		text-align: center;
 		padding: 1rem 1.5rem 1rem 1.5rem;
@@ -217,12 +245,7 @@ input {
 		color: var(--white-color);
 		font-size: var(--h7-font-size);
 		transition: 0.2s ease-in;
-		&:hover {
-			opacity: 0.9;
-
-			box-shadow: inset -4px -4px 4px rgba(0, 0, 0, 0.1), inset 4px 4px 4px rgba(51, 51, 51, 0.647);
-			border-radius: 12px;
-		}
+		@include hover;
 	}
 	&__menu {
 		width: 523px;
@@ -417,8 +440,9 @@ input {
 	line-height: 20px;
 	letter-spacing: 0.2px;
 	text-align: center;
-	padding: 1rem 1.5rem 1rem 1.5rem;
+	padding: 0.9rem 1.5rem 0.9rem 1.5rem;
 	font-weight: var(--font-semi-bold);
+	@include hover;
 	&_light {
 		color: var(--first-color-alt);
 		border: 2px solid #7780a1;
@@ -472,6 +496,31 @@ input {
 }
 /*=============== AUCTIONERS ===============*/
 
+.swiper-next {
+	position: absolute;
+	top: 430px;
+	right: 260px;
+	z-index: var(--z-fixed);
+	cursor: pointer;
+}
+.ri-arrow-right-s-line {
+	position: relative;
+	font-size: 2.5rem;
+	&::after {
+		content: '';
+		width: 120px;
+		height: 120px;
+		position: absolute;
+		top: -100%;
+		left: -100%;
+		z-index: -1;
+		background: rgba(255, 255, 255, 0.8);
+		box-shadow: 0px 25px 75px rgba(6, 7, 20, 0.1);
+		backdrop-filter: blur(7px);
+		border-radius: 100%;
+	}
+}
+
 .section__title {
 	font-size: var(--h4-font-size);
 }
@@ -479,10 +528,8 @@ input {
 .auctions {
 	overflow: hidden;
 	&__wrapper {
+		position: relative;
 		margin-top: 6rem;
-		display: flex;
-		justify-content: center;
-		align-items: center;
 	}
 
 	&__item {
@@ -515,15 +562,6 @@ input {
 		letter-spacing: 0.2px;
 	}
 
-	&__price {
-		background: rgba(42, 39, 201, 0.1);
-		border-radius: 4px;
-		color: var(--blue-color);
-		font-size: var(--h7-font-size);
-		padding: 8px 14px;
-		font-weight: var(--font-semi-bold);
-	}
-
 	&__timer {
 		display: flex;
 		align-items: center;
@@ -547,12 +585,6 @@ input {
 			width: 100%;
 			height: 100%;
 		}
-	}
-
-	&__likes-info {
-		flex: 0 0 50%;
-		color: #7780a1;
-		font-size: 0.875rem;
 	}
 
 	&__likes-hearts {
@@ -584,9 +616,187 @@ input {
 	font-size: 1.1rem;
 }
 
-/*=============== DISCOVER ===============*/
+/*=============== STARTED ===============*/
+.started {
+	padding-top: 6.25rem;
+	padding-bottom: 5.6rem;
+	&__wrapper {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
 
-/*=============== EXPERIENCE ===============*/
+	&__content-text {
+		grid-template-rows: minmax(18px, auto) minmax(192px, auto) minmax(48px, auto) auto;
+	}
+
+	&__subtitle {
+	}
+
+	&__title {
+		margin-top: 1rem;
+		font-size: var(--h1-font-size);
+	}
+
+	&__descr {
+		margin-top: 2rem;
+		width: 460px;
+		font-weight: 400;
+		font-size: var(--h7-font-size);
+		letter-spacing: 0.2px;
+		color: var(--first-color-alt);
+	}
+
+	&__buttons {
+		margin-top: 3rem;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	&__inner {
+		width: 684px;
+		height: 616px;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+}
+
+/*=============== HOTTEST ===============*/
+.hottest {
+	&__wrapper {
+		position: relative;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.swiper-next {
+			bottom: 12px;
+			left: 360px;
+			font-size: 2.55rem;
+			.ri-arrow-right-s-line {
+				&::after {
+					width: 80px;
+					height: 80px;
+					top: -50%;
+					left: -50%;
+					background-color: #fff;
+				}
+			}
+		}
+	}
+}
+
+.hottest-left__swiper {
+	overflow: hidden;
+}
+.hottest-left {
+	padding: 2.8rem 0 2.5rem 2.5rem;
+	width: 450px;
+	height: 840px;
+	border: 1px solid #e2e2ed;
+	border-radius: 20px;
+	&__title {
+		font-size: var(--h5-font-size);
+	}
+	&__swiper {
+		margin-top: 3.5rem;
+	}
+	&__btn {
+		margin-top: 4rem;
+		width: 368px;
+		height: 52px;
+	}
+}
+
+.swiper-item {
+	grid-template-columns: 210px;
+	row-gap: 1rem;
+	&__inner {
+		filter: drop-shadow(4px 4px 12px rgba(54, 53, 53, 0.257));
+		img {
+			border-radius: 20px;
+		}
+	}
+	.ri-heart-line {
+		font-size: 1rem;
+	}
+	&__title {
+		font-size: var(--h7-font-size);
+		font-weight: var(--font-semi-bold);
+	}
+
+	&__descr {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.divider {
+		width: 100%;
+	}
+	&__likes {
+		.like-info {
+			flex: 1 1 70%;
+		}
+		width: 210px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+.btn {
+	&_light {
+	}
+
+	&_blue-dark {
+	}
+}
+.hottest-mid {
+	background: linear-gradient(188.08deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 93.79%), #060714;
+	width: 450px;
+	height: 840px;
+	border-radius: 0px 20px 20px 20px;
+	position: relative;
+	&::before {
+		content: url('../img/pleat.png');
+		position: absolute;
+		top: -31px;
+		left: 0;
+	}
+	&__inner {
+	}
+
+	&__title {
+	}
+
+	&__descr {
+	}
+}
+.hottest-right {
+	width: 450px;
+	height: 840px;
+	border: 1px solid #e2e2ed;
+	border-radius: 20px;
+	&__title {
+	}
+
+	&__wrapper {
+	}
+
+	&__item {
+	}
+
+	&__inner {
+	}
+
+	&__descr {
+	}
+
+	&__likes {
+	}
+}
 
 /*=============== VIDEO ===============*/
 
