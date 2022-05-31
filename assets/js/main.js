@@ -136,15 +136,17 @@ getLike.forEach((item) => {
 
 // ========== TIMER ===========
 
-const timer = document.querySelector('.timer'),
-	deadLine = '2022-05-28';
+const timer = document.querySelectorAll('.timer'),
+	deadLine = '2022-06-30';
 function getTimeRemaining(endtime) {
 	let hours, minutes;
 	const t = Date.parse(endtime) - Date.parse(new Date());
 
 	if (t <= 0) {
-		timer.classList.remove('hideTimer');
-		timer.classList.add('showTimer');
+		timer.forEach((i) => {
+			i.classList.remove('hideTimer');
+			i.classList.add('showTimer');
+		});
 	} else {
 		hours = Math.floor((t / (1000 * 60 * 60)) % 24);
 		minutes = Math.floor((t / 1000 / 60) % 60);
@@ -166,19 +168,21 @@ function getZero(num) {
 }
 
 function setClock(selector, endtime) {
-	const timer = document.querySelector(selector),
+	const timer = document.querySelectorAll(selector),
 		timeInterval = setInterval(updateClock, 60000);
 	updateClock();
 	function updateClock() {
 		const t = getTimeRemaining(endtime);
-
-		timer.innerHTML = `${getZero(t.hours)}: ${getZero(t.minutes)} min left`;
+		timer.forEach((item) => {
+			item.innerHTML = `${getZero(t.hours)}: ${getZero(t.minutes)} left`;
+		});
 		// timer.innerHTML = getZero(t.hours);
 		// timer.innerHTML = getZero(t.minutes);
 		// timer.innerHTML = getZero(t.seconds);
 
 		if (t.total <= 0) {
 			clearInterval(timeInterval);
+			timer.forEach((item) => (item.textContent = 'Ended'));
 		}
 	}
 }
